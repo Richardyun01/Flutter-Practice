@@ -32,40 +32,41 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Test Title"),
+        title: const Text("Test title"),
       ),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: Colors.yellow,
-        child: Stack(
-          children: [
-            Container(
-              width: 200,
-              height: 200,
-              color: Colors.red,
+      body: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          postContainer(title: "Title 1", colorData: Colors.yellow),
+          postContainer(title: "Title 2", colorData: Colors.red),
+          postContainer(title: "Title 3", colorData: Colors.green),
+          postContainer(title: "Title 4", colorData: Colors.amber),
+          postContainer(title: "Title 5", colorData: Colors.indigo),
+        ],
+      ),
+    );
+  }
+
+  Widget postContainer({String title = '', Color colorData = Colors.blue}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(10),
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
-            Container(
-              width: 200,
-              height: 200,
-              margin: const EdgeInsets.only(top: 50, left: 50),
-              color: Colors.blue,
-            ),
-            Container(
-              width: 200,
-              height: 200,
-              margin: const EdgeInsets.only(top: 100, left: 100),
-              color: Colors.green,
-            ),
-            Container(
-              width: 200,
-              height: 200,
-              margin: const EdgeInsets.only(top: 150, left: 150),
-              color: Colors.green,
-            ),
-          ],
+          ),
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: 200,
+          color: colorData,
+        ),
+      ],
     );
   }
 }
